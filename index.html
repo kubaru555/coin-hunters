@@ -1,3 +1,139 @@
-<h1>Coin Hunters</h1>
-<p>Moja pierwsza gra!</p>
-<!-- test deployment -->
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coin Hunters</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #111b22;
+      color: #f7f0dd;
+      font: 1rem/1.5 Inter, system-ui, sans-serif;
+    }
+
+    main {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    h1 {
+      margin: 0 0 0.75rem;
+      color: #ffd16d;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      line-height: 1.1;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 2px solid #54706a;
+      background-color: #203830;
+      background-image:
+        linear-gradient(to right, #2e473e 1px, transparent 1px),
+        linear-gradient(to bottom, #2e473e 1px, transparent 1px);
+      background-size: 5% 8.333%;
+    }
+
+    kbd {
+      display: inline-block;
+      min-width: 1.5em;
+      padding: 0 0.2em;
+      border: 1px solid #687d83;
+      border-radius: 0.25rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Coin Hunters</h1>
+    <p id="controls">
+      Poruszaj postacią za pomocą <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> lub strzałek.
+    </p>
+    <canvas id="board" width="640" height="384" aria-label="Plansza gry" aria-describedby="controls">
+      Twoja przeglądarka nie obsługuje elementu Canvas.
+    </canvas>
+  </main>
+
+  <script>
+    const board = document.querySelector('#board');
+    const context = board.getContext('2d');
+
+    const playerSpeed = 180; // Piksele na sekundę. Zmień tę liczbę i odśwież grę.
+    const playerSize = 28;
+    const player = {
+      x: (board.width - playerSize) / 2,
+      y: (board.height - playerSize) / 2,
+    };
+
+    const directions = {
+      arrowleft: 'left', a: 'left',
+      arrowright: 'right', d: 'right',
+      arrowup: 'up', w: 'up',
+      arrowdown: 'down', s: 'down',
+    };
+    const pressedKeys = new Set();
+
+    window.addEventListener('keydown', (event) => {
+      const key = event.key.toLowerCase();
+      if (Object.hasOwn(directions, key) && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        event.preventDefault();
+        pressedKeys.add(key);
+      }
+    });
+
+    window.addEventListener('keyup', (event) => {
+      pressedKeys.delete(event.key.toLowerCase());
+    });
+
+    window.addEventListener('blur', () => pressedKeys.clear());
+
+    function przesunPostac(seconds) {
+      const activeDirections = new Set();
+      for (const key of pressedKeys) {
+        activeDirections.add(directions[key]);
+      }
+
+      let horizontal = Number(activeDirections.has('right')) - Number(activeDirections.has('left'));
+      let vertical = Number(activeDirections.has('down')) - Number(activeDirections.has('up'));
+
+      // Na skos postać pokonuje tę samą odległość co w poziomie lub w pionie.
+      if (horizontal !== 0 && vertical !== 0) {
+        horizontal /= Math.SQRT2;
+        vertical /= Math.SQRT2;
+      }
+
+      const nextX = player.x + horizontal * playerSpeed * seconds;
+      const nextY = player.y + vertical * playerSpeed * seconds;
+      player.x = Math.max(0, Math.min(nextX, board.width - playerSize));
+      player.y = Math.max(0, Math.min(nextY, board.height - playerSize));
+    }
+
+    function narysujPostac() {
+      context.clearRect(0, 0, board.width, board.height);
+      context.fillStyle = '#ffd16d';
+      context.fillRect(player.x, player.y, playerSize, playerSize);
+    }
+
+    let previousTime;
+    function aktualizujKlatke(time) {
+      if (previousTime !== undefined) {
+        const seconds = Math.min((time - previousTime) / 1000, 0.05);
+        przesunPostac(seconds);
+      }
+      previousTime = time;
+      narysujPostac();
+      requestAnimationFrame(aktualizujKlatke);
+    }
+
+    requestAnimationFrame(aktualizujKlatke);
+  </script>
+</body>
+</html>
