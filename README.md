@@ -43,6 +43,10 @@ Po kursie uczestnik powinien potrafić:
 
 **Metoda:** krótkie wprowadzenie → małe zadanie → próba z AI → test → wyjaśnienie kodu → wspólna zabawa. Nie uczymy się przez bezrefleksyjne kopiowanie długich skryptów.
 
+### Współpraca na Padlecie
+
+Na wspólnej tablicy uczestnicy mogą zgłaszać pomysły na monety, plansze i zasady gry oraz rozwijać propozycje innych. Na zajęciach wspólnie wybieramy pomysł, który chcemy przetestować w grze. [Coin Hunters – pomysły na Padlecie](https://padlet.com/kubaru/coin-hunters-pomys-y-s025e4e6b6zduw05o01g)
+
 ## 📅 Ramowy plan: 10 zajęć po 60–90 minut
 
 | Zajęcia | Temat | Efekt widoczny dla dziecka |
