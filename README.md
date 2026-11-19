@@ -81,31 +81,30 @@ Plan jest elastyczny: część sieciowa jest bardziej wymagająca, więc **prowa
 
 **Ważne:** GitHub Pages hostuje tylko frontend (HTML, CSS, JavaScript, grafiki). **Nie uruchamia backendu multiplayer**. Serwer Node.js będzie wdrożony oddzielnie, a przeglądarki połączą się z nim przez bezpieczne **WSS**.
 
-### Planowana struktura projektu
+### Struktura projektu
 
-Na początku celowo utrzymujemy wszystko w **jednym pliku**:
-
-```text
-coin-hunters/
-├── index.html
-└── README.md
-```
-
-Dopiero gdy gra urośnie, rozdzielimy kod:
+Kod jest podzielony według odpowiedzialności:
 
 ```text
 coin-hunters/
-├── index.html
+├── index.html           # struktura strony i wybór zwierzaka
 ├── css/
-│   └── style.css
+│   └── style.css        # wygląd strony
 ├── js/
-│   ├── game.js          # pętla gry i sterowanie
-│   ├── rules.js         # zasady, punkty i bonusy
-│   └── multiplayer.js   # klient sieciowy — później
-├── assets/
-├── server/              # backend Node.js — później
+│   ├── config.js        # plansza, parametry i stan gracza
+│   ├── world.js         # położenia obiektów i przeszkody
+│   ├── drawing.js       # wspólne funkcje rysowania
+│   ├── map.js           # grafika mapy i dach chatki
+│   ├── skins.js         # rysowanie i wybór zwierzaka
+│   ├── input.js         # obsługa klawiatury
+│   ├── player.js        # ruch postaci i kolizje
+│   └── game.js          # kamera, rysowanie klatki i pętla gry
 └── README.md
 ```
+
+Skrypty są ładowane w kolejności podanej w `index.html` i współdzielą zmienne oraz funkcje. Nie używamy modułów ES, więc gra nadal działa po otwarciu `index.html` bezpośrednio w przeglądarce. Pobierając lub kopiując grę, zachowaj również foldery `css/` i `js/`.
+
+Backend i klient multiplayera zostaną dodane w późniejszym etapie.
 
 W multiplayerze **serwer rozstrzyga o zbieraniu monet i punktacji**, a przeglądarki pokazują stan gry i wysyłają akcje graczy. To ogranicza rozbieżności i nadużycia.
 
