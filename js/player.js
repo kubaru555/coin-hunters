@@ -1,17 +1,17 @@
-function pozycjaPoRuchu(axis, distance) {
+function pozycjaPoRuchu(axis, distance, entity = player) {
   const horizontal = axis === 'x';
   const otherAxis = horizontal ? 'y' : 'x';
   const size = horizontal ? 'w' : 'h';
   const otherSize = horizontal ? 'h' : 'w';
-  const limit = (horizontal ? worldWidth : worldHeight) - playerSize;
-  const start = player[axis];
-  const side = player[otherAxis];
+  const limit = (horizontal ? worldWidth : worldHeight) - entity.size;
+  const start = entity[axis];
+  const side = entity[otherAxis];
   let end = Math.max(0, Math.min(start + distance, limit));
 
   // Zatrzymaj gracza na najbliższej krawędzi przeszkody na tej osi.
   for (const obstacle of obstacles) {
-    if (side + playerSize <= obstacle[otherAxis] || side >= obstacle[otherAxis] + obstacle[otherSize]) continue;
-    const near = obstacle[axis] - playerSize;
+    if (side + entity.size <= obstacle[otherAxis] || side >= obstacle[otherAxis] + obstacle[otherSize]) continue;
+    const near = obstacle[axis] - entity.size;
     const far = obstacle[axis] + obstacle[size];
     if (distance > 0 && start <= near) end = Math.min(end, near);
     if (distance < 0 && start >= far) end = Math.max(end, far);

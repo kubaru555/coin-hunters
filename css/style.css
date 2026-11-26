@@ -28,7 +28,51 @@ h1 {
   height: auto;
   border: 2px solid #54706a;
   background: #234b37;
+  cursor: crosshair;
+  touch-action: none;
 }
+
+[hidden] { display: none !important; }
+
+button {
+  border: 1px solid #ffd16d;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  color: #182b26;
+  background: #ffd16d;
+  font: 700 0.9rem/1.3 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) { filter: brightness(1.1); }
+button:disabled { opacity: 0.55; cursor: default; }
+button:focus-visible { outline: 3px solid #fff5dc; outline-offset: 3px; }
+
+.game-toolbar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+#hud { flex: 1; margin: 0; color: #ffe593; font-size: 0.85rem; }
+.game-board { position: relative; }
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.5rem, 3vw, 2rem);
+  background: #10251aee;
+  text-align: center;
+  overflow: auto;
+}
+.game-overlay h2 { margin: 0 0 0.5rem; color: #ffe593; font-size: clamp(1.1rem, 3vw, 1.75rem); }
+.game-overlay p { max-width: 30rem; margin: 0 0 1rem; font-size: clamp(0.75rem, 2vw, 1rem); }
+#game-status { min-height: 3em; font-size: 0.9rem; color: #c2d6bc; }
+#shop { padding: 1rem; border: 1px solid #ffd16d; border-radius: 0.75rem; background: #203830; }
+#shop h2 { margin: 0; color: #ffd16d; }
+#shop > p { margin: 0.5rem 0; font-size: 0.9rem; }
+.shop-item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #54706a; }
+.shop-item p { flex: 1; margin: 0; font-size: 0.85rem; }
+.shop-item button { max-width: 11rem; }
+#next-wave { margin-top: 1rem; }
 
 .skins {
   margin-top: 1.25rem;

@@ -10,11 +10,29 @@
   <main>
     <h1>Coin Hunters</h1>
     <p id="controls">
-      Poruszaj postacią za pomocą <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> lub strzałek.
+      <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> lub strzałki: ruch · Mysz: celowanie i strzał (przytrzymaj) · <kbd>E</kbd>: zbieranie monet (przytrzymaj).
     </p>
-    <canvas id="board" width="640" height="384" aria-label="Mapa parku jurajskiego" aria-describedby="controls">
-      Twoja przeglądarka nie obsługuje elementu Canvas.
-    </canvas>
+    <div class="game-toolbar">
+      <p id="hud" aria-label="Stan gry"></p>
+      <button id="pause-game" type="button" disabled>Pauza</button>
+    </div>
+    <div class="game-board">
+      <canvas id="board" width="640" height="384" aria-label="Mapa parku jurajskiego z zombie" aria-describedby="controls game-status">
+        Twoja przeglądarka nie obsługuje elementu Canvas.
+      </canvas>
+      <section id="game-overlay" class="game-overlay" aria-labelledby="overlay-title">
+        <h2 id="overlay-title">Obroń park przed zombie!</h2>
+        <p id="overlay-description"></p>
+        <button id="main-action" type="button">Rozpocznij grę</button>
+      </section>
+    </div>
+    <p id="game-status" role="status">Wybierz zwierzaka i rozpocznij grę.</p>
+    <section id="shop" aria-labelledby="shop-title" hidden>
+      <h2 id="shop-title">Sklep w chatce</h2>
+      <p>Kup mocniejszą wyrzutnię albo ruszaj dalej z obecną. Możesz wyjść i zebrać pozostałe monety.</p>
+      <div id="shop-items"></div>
+      <button id="next-wave" type="button">Rozpocznij następną falę</button>
+    </section>
     <section class="skins" aria-labelledby="skins-title">
       <h2 id="skins-title">Wybierz zwierzaka</h2>
       <div class="skin-options">
@@ -46,6 +64,11 @@
   <script src="js/skins.js"></script>
   <script src="js/input.js"></script>
   <script src="js/player.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/enemies.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/loot.js"></script>
+  <script src="js/waves.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>

@@ -1,5 +1,45 @@
 # 🪙 Coin Hunters — AI Game Lab
 
+## Rozszerzenie: obrona parku przed zombie
+
+Obecna wersja zawiera pięć fal zombie, cztery obrotowe skiny, strzelanie,
+zbieranie monet pyskiem i sklep w istniejącej chatce. Otwórz `index.html`
+w przeglądarce i kliknij **Rozpocznij grę** — instalacja pakietów nie jest potrzebna.
+
+- **WASD / strzałki:** ruch. **Mysz:** celowanie całym zwierzakiem.
+- **Przytrzymany lewy przycisk myszy:** strzelanie co 0,3 sekundy, bez limitu amunicji.
+- **Przytrzymane E:** zbieranie pobliskich złotych monet z kością. Każda leci do pyska i daje **+1**.
+- **Pauza:** przycisk nad planszą. Przełączenie okna lub karty też wstrzymuje grę; wróć przyciskiem **Wznów grę**.
+
+Każdy zombie zostawia jedną monetę. Masz pięć serc, a po fali odzyskujesz jedno
+(maksymalnie pięć). W przerwie zbierz łupy i wróć do chatki na północnym wschodzie
+mapy — wskazuje ją strzałka **SKLEP**. Wejdź przez drzwi od południa; sklep pojawi
+się pod planszą. Kup broń lub rozpocznij kolejną falę bez zakupu.
+
+| Broń | Cena | Obrażenia |
+| --- | ---: | ---: |
+| Miotacz groszku | Darmowy | 1 |
+| Wyrzutnia kości | 6 monet | 2 |
+| Wyrzutnia złotych kości | 14 monet | 3 |
+
+Fale mają kolejno 6, 8, 10, 12 i 14 zombie o 3–7 punktach życia i prędkości
+45–65 pikseli na sekundę. Zebranie wszystkich monet pozwala kupić pierwsze
+ulepszenie po fali 1, a złotą wyrzutnię po fali 3. Piąta fala kończy grę zwycięstwem.
+Przegrana i nowa gra zerują monety oraz zakupy. Postęp nie jest zapisywany.
+
+Logika rozszerzenia znajduje się w `js/navigation.js` (geometria i drogi),
+`js/enemies.js`, `js/combat.js`, `js/loot.js` i `js/waves.js` (fale, sklep i interfejs).
+Parametry broni i fal można zmieniać w `js/config.js`.
+
+**Sprawdzenie dla prowadzącego:** mając Node.js, uruchom
+`node --test tests/game.test.cjs`. Testy nie wymagają pakietów i używają prawdziwych
+skryptów gry z atrapą DOM/Canvas: sprawdzają drogi i kolizje, obrażenia, monety,
+pauzę, zakupy, pięć fal oraz restart. Wygląd i sterowanie należy też sprawdzić
+w przeglądarce. Opcjonalny lokalny podgląd HTTP: `node tests/serve.cjs`,
+następnie `http://127.0.0.1:4173`; zatrzymanie serwera: `Ctrl+C`.
+
+Poniżej pozostaje opis projektu edukacyjnego i dalszych planów kursu.
+
 **Przeglądarkowa gra 2D tworzona podczas zdalnych warsztatów programowania dla dzieci w wieku około 11 lat.**
 
 Coin Hunters to projekt edukacyjny, w którym uczestnicy **projektują, uruchamiają, testują i rozwijają własną grę**, a następnie wspólnie grają online. Kurs łączy doświadczenie wyniesione ze **Scratcha i Tynkera**, podstawy JavaScriptu oraz świadome korzystanie ze sztucznej inteligencji (*vibe coding*).

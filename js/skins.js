@@ -63,6 +63,24 @@ const drawSkin = {
   },
 };
 
+// Punkty pyska w oryginalnych rysunkach 64 × 64.
+const skinMouths = {
+  wolf: { x: 32, y: 44 }, duck: { x: 32, y: 43 },
+  bear: { x: 32, y: 37 }, dinosaur: { x: 27, y: 43 },
+};
+
+function mouthPosition() {
+  const mouth = skinMouths[selectedButton.dataset.skin];
+  const x = (mouth.x - 32) * playerSize / 64;
+  const y = (mouth.y - 32) * playerSize / 64;
+  const rotation = player.angle - Math.PI / 2;
+  const center = playerCenter();
+  return {
+    x: center.x + x * Math.cos(rotation) - y * Math.sin(rotation),
+    y: center.y + x * Math.sin(rotation) + y * Math.cos(rotation),
+  };
+}
+
 let selectedButton = document.querySelector('.skin-option[aria-pressed="true"]');
 let playerSprite = selectedButton.querySelector('canvas');
 
