@@ -44,6 +44,28 @@ const drawSkin = {
     drawEyes(art, 25);
     drawShape(art, 'M27 32 Q32 30 37 32 Q36 37 32 37 Q28 37 27 32 Z', outlineColor, false);
   },
+  portos(art) {
+    // Złoty cocker spaniel: długie, falowane uszy i królewska peleryna.
+    drawShape(art, 'M39 51 Q52 52 56 44 Q61 48 56 55 Q50 60 40 58 Z', '#b97535');
+    drawShape(art, 'M21 42 Q32 38 43 42 L50 59 Q32 64 14 59 Z', '#a93656');
+    drawOval(art, 25, 57, 6, 4, '#e3ac62', true);
+    drawOval(art, 39, 57, 6, 4, '#e3ac62', true);
+    drawShape(art, 'M20 43 Q32 50 44 43 L42 49 Q32 55 22 49 Z', '#fff1d8');
+    drawOval(art, 32, 29, 19, 18, '#e3ac62', true);
+    drawShape(art, 'M18 18 Q8 15 7 29 Q3 36 7 41 Q4 49 11 51 Q18 54 20 45 L23 27 Z', '#965b30');
+    drawShape(art, 'M46 18 Q56 15 57 29 Q61 36 57 41 Q60 49 53 51 Q46 54 44 45 L41 27 Z', '#965b30');
+    drawShape(art, 'M12 25 Q9 34 12 43 M52 25 Q55 34 52 43', '#b97535');
+    drawOval(art, 32, 37, 12, 9, '#f7d69b');
+    drawEyes(art, 29);
+    drawShape(art, 'M27 35 Q32 33 37 35 Q37 39 32 40 Q27 39 27 35 Z', outlineColor, false);
+    drawShape(art, 'M32 40 L32 42 Q28 46 25 42 M32 42 Q36 46 39 42', '#b97535');
+    // Korona z trzema szczytami i kolorowymi klejnotami.
+    drawShape(art, 'M20 18 L17 6 L26 11 L32 3 L38 11 L47 6 L44 18 Z', '#ffd15b');
+    drawShape(art, 'M20 16 L44 16 L43 21 L21 21 Z', '#e9a52d');
+    drawOval(art, 32, 14, 2.3, 3, '#df515d', true);
+    drawOval(art, 23, 13, 1.5, 1.5, '#63c9db');
+    drawOval(art, 41, 13, 1.5, 1.5, '#63c9db');
+  },
   dinosaur(art) {
     // Zielony ogon wystaje spod szarego przebrania.
     drawShape(art, 'M39 50 Q47 52 52 50 L54 46 L56 48 L60 44 Q63 56 47 59 L40 58 Z', '#7ac56d');
@@ -67,6 +89,7 @@ const drawSkin = {
 const skinMouths = {
   wolf: { x: 32, y: 44 }, duck: { x: 32, y: 43 },
   bear: { x: 32, y: 37 }, dinosaur: { x: 27, y: 43 },
+  portos: { x: 32, y: 42 },
 };
 
 function mouthPosition() {

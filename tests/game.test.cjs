@@ -23,7 +23,7 @@ function loadGame() {
     };
   }
   const elements = new Map();
-  const skins = ['wolf', 'duck', 'bear', 'dinosaur'].map(skin => ({ ...element(), dataset: { skin } }));
+  const skins = ['wolf', 'duck', 'bear', 'dinosaur', 'portos'].map(skin => ({ ...element(), dataset: { skin } }));
   const document = {
     hidden: false, listeners: {},
     querySelector(selector) {

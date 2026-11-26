@@ -2,7 +2,7 @@
 
 ## Rozszerzenie: obrona parku przed zombie
 
-Obecna wersja zawiera pięć fal zombie, cztery obrotowe skiny, strzelanie,
+Obecna wersja zawiera pięć fal zombie, pięć obrotowych skinów (w tym cocker spaniela „Portos król” w koronie), strzelanie,
 zbieranie monet pyskiem i sklep w istniejącej chatce. Otwórz `index.html`
 w przeglądarce i kliknij **Rozpocznij grę** — instalacja pakietów nie jest potrzebna.
 
